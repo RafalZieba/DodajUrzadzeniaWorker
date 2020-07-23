@@ -1,0 +1,30 @@
+﻿<?xml version="1.0"?>
+<DataForm Contexts="License.All" 
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+          xmlns="http://www.enova.pl/schema/form.xsd"
+          xsi:schemaLocation="http://www.enova.pl/schema/ http://www.enova.pl/schema/form.xsd"
+          RightName="Page:DodajUrzadzenia2Page">
+  <Page Name="DodajUrzadzenia2Page" CaptionHtml="Wybierz" DataContext="{DataSource}">
+    <Flow>
+      <Group CaptionHtml="Urzadzenia">
+        <Grid Width="60" Height="*" EditValue="{Elementy}" IsToolbarVisible="false" SelectedValue="{ElementyItem}">
+          <Field CaptionHtml="Identyfikator" EditValue="{Identyfikator}" />
+          <Field CaptionHtml="Nazwa" EditValue="{Nazwa}" />
+        </Grid>
+      </Group>
+      <Stack>
+        <Command CaptionHtml="Dodaj" Width="12" MethodName="Add"/>
+        <Command CaptionHtml="Usuń" Width="12" MethodName="Remove"/>
+        <Command CaptionHtml="Dodaj wszystkie" Width="12" MethodName="AddAll"/>
+        <Command CaptionHtml="Usuń wszystkie" Width="12" MethodName="RemoveAll"/>
+      </Stack>
+      <Group CaptionHtml="Wybrane urzadzenia">
+        <Grid Width="*" Height="*" EditValue="{Wybrane}" IsToolbarVisible="false" SelectedValue="{WybraneItem}">
+          <Field CaptionHtml="Identyfikator" EditValue="{Urzadzenie.Identyfikator}" />
+          <Field CaptionHtml="Nazwa" EditValue="{Urzadzenie.Nazwa}" />
+        </Grid>
+      </Group>
+    </Flow>
+  </Page>
+ </DataForm>
