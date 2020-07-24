@@ -6,12 +6,15 @@ using Soneta.Kadry.Forms;
 using Soneta.Types;
 using Soneta.Zadania;
 
-[assembly: Worker(typeof(DodajUrzadzenia.DodajUrzadzenia2Worker), typeof(Soneta.Zadania.Zadanie))]
+[assembly: Worker(typeof(DodajUrzadzenia.DodajUrzadzeniaWorker), typeof(Soneta.Zadania.Zadanie))]
 
 namespace DodajUrzadzenia
 {
     [Caption("Dodaj lub usuń urządzenia")]
-    public class DodajUrzadzenia2Worker : DodajUsuńBase, IDisposable {
+    public class DodajUrzadzeniaWorker : IDisposable {
+
+        [Context]
+        public Session Session { get; set; }
 
         [Context]
         public Zadanie Zlecenie { get; set; }
@@ -21,10 +24,10 @@ namespace DodajUrzadzenia
             Icon = ActionIcon.Wizard,
             Mode = ActionMode.SingleSession | ActionMode.OnlyForm | ActionMode.NonAccept,
             Priority = 1)]
-        public DodajUrzadzenia2Worker DodajUrzadzenia() => this;
+        public DodajUrzadzeniaWorker DodajUrzadzenia() => this;
 
         private View vElementy;
-        public override IEnumerable Elementy {
+        public IEnumerable Elementy {
             get
             {
                 if (vElementy == null)
@@ -36,7 +39,7 @@ namespace DodajUrzadzenia
         }
 
         private View vWybrane;
-        public override IEnumerable Wybrane
+        public IEnumerable Wybrane
         {
             get {
                 if (vWybrane == null)
@@ -48,7 +51,7 @@ namespace DodajUrzadzenia
             }
         }
 
-        public override Row Dodaj(IEnumerable rows)
+        public  Row Dodaj(IEnumerable rows)
         {
             Row result = null;
             foreach (Urzadzenie urz in rows)
@@ -58,7 +61,7 @@ namespace DodajUrzadzenia
             return result;
         }
 
-        public override Row Usuń(IEnumerable rows)
+        public  Row Usuń(IEnumerable rows)
         {
             Row result = null;
             foreach (Urzadzenie urz in rows)
